@@ -45,5 +45,22 @@ router.post('/', (req, res) => {
     
 })
 
+router.put('/', (req, res) => {
+    const sqlQuery = `
+        UPDATE "shopping_list"
+        SET "isPurchased" = false;
+        `;
+    pool.query(sqlQuery)
+        .then((result) => {
+            console.log('Reset list');
+            res.sendStatus(200);   
+        })
+        .catch((error) => {
+            console.log('PUT reset error', error);
+            res.sendStatus(500);
+            
+        })
+})
+
 
 module.exports = router;
