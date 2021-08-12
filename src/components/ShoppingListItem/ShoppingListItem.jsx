@@ -6,6 +6,9 @@ function ShoppingListItem({data}) {
     return (
         <div id='shopping-list-item'>
             {data.name}
+            {data.quantity}
+            {data.unit}
+            {data.isPurchased}
             <button>BUY</button>
             <button>REMOVE</button>
         </div>
