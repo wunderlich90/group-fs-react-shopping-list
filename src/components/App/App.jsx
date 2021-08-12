@@ -4,6 +4,7 @@ import Header from '../Header/Header.jsx'
 import ShoppingList from '../ShoppingList/ShoppingList.jsx';
 
 import './App.css';
+import GroceryForm from '../Form/form.jsx';
 
 
 function App() {
@@ -11,6 +12,8 @@ function App() {
         <div className="App">
             <Header />
             <main>
+            <GroceryForm/>
+
                 <p>Under Construction...</p>
                 <ShoppingList />
             </main>
