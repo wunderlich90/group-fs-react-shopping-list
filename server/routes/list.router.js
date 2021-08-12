@@ -89,11 +89,31 @@ router.delete('/', (req, res) => {
 
     pool.query(sqlQuery)
         .then((result) => {
-            console.log('Item Deleted');
+            console.log('List Deleted');
             res.sendStatus(200);
         })
         .catch((error) => {
             console.log('DELETE list error', error );
+            res.sendStatus(500);
+            
+        })
+})
+
+router.delete('/:id', (req, res) => {
+    const sqlQuery = `DELETE FROM "shopping_list"
+                        WHERE "id" = $1
+                    `;
+    const sqlParams = [
+        req.params.id
+    ];
+
+    pool.query(sqlQuery, sqlParams)
+        .then((result) => {
+            console.log('Item Deleted');
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log('DELETE item error', error );
             res.sendStatus(500);
             
         })
