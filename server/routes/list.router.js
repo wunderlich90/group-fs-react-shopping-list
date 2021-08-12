@@ -32,6 +32,8 @@ router.post('/', (req, res) => {
         req.body.isPurchased    //$4
     ];
 
+    console.log('our sql params', sqlParams);
+
     pool.query(sqlQuery, sqlParams)
         .then((result) => {
             console.log('Added item to the shopping list', req.body);

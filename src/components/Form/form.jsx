@@ -1,33 +1,58 @@
+import react, { useState, useEffect } from 'react';
 import { func } from 'prop-types';
-import react from 'react';
-import { useState } from 'react';
 
-function GroceryForm() {
+
+function GroceryForm({postItem}) {
+
+
+    let [newItemName, setNewItemName] = useState('');
+    let [newItemQuantity, setNewItemQuantity] = useState(0);
+    let [newItemUnit, setNewItemUnit] = useState('');
+
+    const onFormSubmit = (evt) => {
+        evt.preventDefault();
+
+        let newItem = {
+            name: newItemName,
+            quantity: newItemQuantity,
+            unit: newItemUnit,
+            isPurchased: 'false'
+        }
+
+        console.log('our new item object and we got in!',  newItem);
+
+        postItem(newItem);
+
+        setNewItemName('');
+        setNewItemQuantity(0);
+        setNewItemUnit('');
+    }
+    
 
     return(
-<>
-<br></br>
-    <form onSubmit={console.log("test")}>
+    <>
+    <br></br>
+    <form onSubmit={onFormSubmit}>
     <label htmlFor="Item:"> Item:</label>
     <input 
     type="text" 
-    value=""
-    onChange={evt => setPersonName(evt.target.value)}
+    value= {newItemName}
+    onChange={evt => setNewItemName(evt.target.value)}
     id="itemID" />
 
     <label htmlFor="Quantity:"> Quantity:</label>
     <input 
     type="number" 
-    value=""
-    onChange={evt => setPersonRole(evt.target.value)}
+    value= {newItemQuantity}
+    onChange={evt => setNewItemQuantity(evt.target.value)}
     id="quantityID" 
     />
 
 <label htmlFor="Unit:"> Unit:</label>
     <input 
     type="text" 
-    value=""
-    onChange={evt => setPersonName(evt.target.value)}
+    value= {newItemUnit}
+    onChange={evt => setNewItemUnit(evt.target.value)}
     id="unitID" />
 
     <button>Save</button>
