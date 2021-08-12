@@ -14,7 +14,31 @@ router.get('/', (res, req) => {
             res.send(result.rows);   
         })
         .catch((error) => {
-            console.log('Database query error', error);
+            console.log('GET error', error);
+            res.sendStatus(500);
+            
+        })
+    
+})
+
+router.post('/', (req, res) => {
+    const sqlQuery = `INSERT INTO "shopping_list" (name, quantity, unit, isPurchased)
+                        VALUES ($1, $2, $3, $4)`;
+
+    const sqlParams = [
+        req.body.name,          //$1
+        req.body.quantity,      //$2
+        req.body.unit,          //$3
+        req.body.isPurchased    //$4
+    ];
+
+    pool.query(sqlQuery, sqlParams)
+        .then((result) => {
+            console.log('Added item to the shopping list', req.body);
+            res.sendStatus(201);
+        })
+        .catch((error) => {
+            console.log('POST error', error);
             res.sendStatus(500);
             
         })
