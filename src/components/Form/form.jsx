@@ -4,11 +4,15 @@ import { func } from 'prop-types';
 
 function GroceryForm({postItem}) {
 
-
     let [newItemName, setNewItemName] = useState('');
     let [newItemQuantity, setNewItemQuantity] = useState(0);
     let [newItemUnit, setNewItemUnit] = useState('');
 
+    /**
+     * Function on Form Submit
+     * Builds a new object and sends sends to postItem function
+     */
+    
     const onFormSubmit = (evt) => {
         evt.preventDefault();
 
@@ -16,13 +20,10 @@ function GroceryForm({postItem}) {
             name: newItemName,
             quantity: newItemQuantity,
             unit: newItemUnit,
-            isPurchased: 'false'
+            is_purchased: 'false'
         }
 
-        console.log('our new item object and we got in!',  newItem);
-
         postItem(newItem);
-
         setNewItemName('');
         setNewItemQuantity(0);
         setNewItemUnit('');

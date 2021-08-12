@@ -26,7 +26,10 @@ function App() {
           })
     }
 
-
+    /**
+     * Post Item Axios Request
+     * Adds our new shopping list item
+     */
     const postItem = (newItem) => {
         axios({
             method: 'POST',

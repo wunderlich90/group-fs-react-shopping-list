@@ -6,7 +6,7 @@ const pool = require('../modules/pool.js');
 
 router.get('/', (req, res) => {
     const sqlQuery = `SELECT * FROM "shopping_list"
-                        ORDER BY "isPurchased" ASC,
+                        ORDER BY "is_purchased" ASC,
                         "name" ASC;`;
     pool.query(sqlQuery)
         .then((result) => {
@@ -22,14 +22,14 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    const sqlQuery = `INSERT INTO "shopping_list" (name, quantity, unit, isPurchased)
+    const sqlQuery = `INSERT INTO "shopping_list" (name, quantity, unit, is_purchased)
                         VALUES ($1, $2, $3, $4)`;
 
     const sqlParams = [
         req.body.name,          //$1
         req.body.quantity,      //$2
         req.body.unit,          //$3
-        req.body.isPurchased    //$4
+        req.body.is_purchased    //$4
     ];
 
     console.log('our sql params', sqlParams);
