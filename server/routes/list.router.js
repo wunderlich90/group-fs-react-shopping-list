@@ -72,13 +72,28 @@ router.put('/:id', (req, res) => {
         req.params.id
     ];
 
-    pool.query(sqlQuery)
+    pool.query(sqlQuery, sqlParams)
         .then((result) => {
             console.log('Item purchased');
             res.sendStatus(200);   
         })
         .catch((error) => {
             console.log('PUT buy error', error);
+            res.sendStatus(500);
+            
+        })
+})
+
+router.delete('/', (req, res) => {
+    const sqlQuery = `DELETE * FROM "shopping_list"`;
+
+    pool.query(sqlQuery)
+        .then((result) => {
+            console.log('Item Deleted');
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log('DELETE list error', error );
             res.sendStatus(500);
             
         })
