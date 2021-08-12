@@ -26,16 +26,34 @@ function App() {
           })
     }
 
+    /**
+     * Post Item Axios Request
+     * Adds our new shopping list item
+     */
+    const postItem = (newItem) => {
+        axios({
+            method: 'POST',
+            url: '/list',
+            data: newItem
+        }).then(response => {
+            console.log('POST /list', response);
+            fetchList();
+          }).catch(error => {
+            console.log('POST /list failed', error);
+          })
+    }
+
     return (
         <div className="App">
             <Header />
             <main>
-            <GroceryForm/>
-
-                <p>Under Construction...</p>
-                <ShoppingList 
-                    list={shoppingListArray}
-                />
+            <GroceryForm 
+                postItem= {postItem}
+            />
+            
+            <ShoppingList 
+                list={shoppingListArray}
+            />
             </main>
         </div>
     );

@@ -16,3 +16,7 @@ INSERT INTO "shopping_list"(
 "isPurchased")
 
 VALUES ('milk', 1, 'gallon', false);
+
+
+-- update is purchased column in db
+ALTER TABLE "public"."shopping_list" RENAME COLUMN "isPurchased" TO "is_purchased";
