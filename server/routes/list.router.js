@@ -62,5 +62,27 @@ router.put('/', (req, res) => {
         })
 })
 
+router.put('/:id', (req, res) => {
+    const sqlQuery = `
+        UPDATE "shopping_list"
+        SET "isPurchased" = true
+        WHERE "id" = $1;
+        `;
+    const sqlParams = [
+        req.params.id
+    ];
+
+    pool.query(sqlQuery)
+        .then((result) => {
+            console.log('Item purchased');
+            res.sendStatus(200);   
+        })
+        .catch((error) => {
+            console.log('PUT buy error', error);
+            res.sendStatus(500);
+            
+        })
+})
+
 
 module.exports = router;
