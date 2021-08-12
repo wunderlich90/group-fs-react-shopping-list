@@ -1,13 +1,31 @@
-import React from 'react';
-
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import Header from '../Header/Header.jsx'
 import ShoppingList from '../ShoppingList/ShoppingList.jsx';
 
 import './App.css';
 import GroceryForm from '../Form/form.jsx';
 
-
 function App() {
+
+    let [shoppingListArray, setShoppingListArray] = useState([]);
+
+    // On Load, do this thing
+    useEffect(() => {
+        console.log('in useEffect')
+        fetchList ();
+    }, []);
+
+    const fetchList = () => {
+        console.log('got into fetch list function');
+        axios.get('/list').then((response) => {
+            console.log('this is the response from fetchList', response.data);
+            setShoppingListArray(response.data);
+        }).catch(error => {
+            console.log('POST /list failed', error);
+          })
+    }
+
     return (
         <div className="App">
             <Header />
@@ -15,7 +33,9 @@ function App() {
             <GroceryForm/>
 
                 <p>Under Construction...</p>
-                <ShoppingList />
+                <ShoppingList 
+                    list={shoppingListArray}
+                />
             </main>
         </div>
     );
