@@ -50,7 +50,7 @@ router.post('/', (req, res) => {
 router.put('/', (req, res) => {
     const sqlQuery = `
         UPDATE "shopping_list"
-        SET "isPurchased" = false;
+        SET "is_purchased" = false;
         `;
     pool.query(sqlQuery)
         .then((result) => {
@@ -67,7 +67,7 @@ router.put('/', (req, res) => {
 router.put('/:id', (req, res) => {
     const sqlQuery = `
         UPDATE "shopping_list"
-        SET "isPurchased" = true
+        SET "is_purchased" = true
         WHERE "id" = $1;
         `;
     const sqlParams = [
