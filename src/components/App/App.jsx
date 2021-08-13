@@ -43,6 +43,18 @@ function App() {
           })
     }
 
+    const putItem = () => {
+        axios({
+            method: 'PUT',
+            url: '/list',
+        }).then(response => {
+            console.log('POST /list', response);
+            fetchList();
+          }).catch(error => {
+            console.log('POST /list failed', error);
+          })
+    }
+
     const deleteItem = (id) => {
         console.log('This is the id', id);
 
@@ -80,6 +92,7 @@ function App() {
                 deleteItem={deleteItem}
                 fetchList={fetchList}
                 clearList={clearList}
+                putItem={putItem}
             />
             </main>
         </div>
