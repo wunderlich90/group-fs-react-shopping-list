@@ -56,6 +56,17 @@ function App() {
         })
     }
 
+    const clearList = () => {
+        axios({
+            method: 'DELETE',
+            url: '/list'
+        }).then(response => {
+            console.log('Cleared list');
+        }).catch(error => {
+            console.log('DELETE LIST error', error);
+        })
+    }
+
     return (
         <div className="App">
             <Header />
@@ -68,6 +79,7 @@ function App() {
                 list={shoppingListArray}
                 deleteItem={deleteItem}
                 fetchList={fetchList}
+                clearList={clearList}
             />
             </main>
         </div>
