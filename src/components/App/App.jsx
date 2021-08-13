@@ -46,15 +46,14 @@ function App() {
     const deleteItem = (id) => {
         console.log('This is the id', id);
 
-        // axios({
-        //     method: 'DELETE',
-        //     url: '/list',
-        //     data: id
-        // }).then(response => {
-        //     console.log('Deleted item');
-        // }).catch(error => {
-        //     console.log('DELETE error', error);
-        // })
+        axios({
+            method: 'DELETE',
+            url: `/list/${id}`
+        }).then(response => {
+            console.log('Deleted item');
+        }).catch(error => {
+            console.log('DELETE error', error);
+        })
     }
 
     return (
@@ -68,6 +67,7 @@ function App() {
             <ShoppingList 
                 list={shoppingListArray}
                 deleteItem={deleteItem}
+                fetchList={fetchList}
             />
             </main>
         </div>

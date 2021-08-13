@@ -1,8 +1,15 @@
 import React from 'react';
 import './shoppinglistitem.css';
 
-function ShoppingListItem({data, deleteItem}) {
+function ShoppingListItem({data, deleteItem, fetchList}) {
+
+    const itemDeleted = () => {
+        deleteItem(data.id)
+        fetchList();
+    }
+
     console.log('data in shopping list item component', data);
+
     return (
         <div id='shopping-list-item'>
             {data.name}
@@ -10,7 +17,7 @@ function ShoppingListItem({data, deleteItem}) {
             {data.unit}
             {data.isPurchased}
             <button>BUY</button>
-            <button onClick={deleteItem(data.id)}>REMOVE</button>
+            <button onClick={itemDeleted}>REMOVE</button>
         </div>
     );
 }

@@ -87,7 +87,7 @@ router.put('/:id', (req, res) => {
 })
 
 router.delete('/', (req, res) => {
-    const sqlQuery = `DELETE * FROM "shopping_list"`;
+    const sqlQuery = `DELETE FROM "shopping_list"`;
 
     pool.query(sqlQuery)
         .then((result) => {
@@ -108,7 +108,8 @@ router.delete('/:id', (req, res) => {
     const sqlParams = [
         req.params.id
     ];
-
+    console.log('Params ID', req.params.id);
+    
     pool.query(sqlQuery, sqlParams)
         .then((result) => {
             console.log('Item Deleted');

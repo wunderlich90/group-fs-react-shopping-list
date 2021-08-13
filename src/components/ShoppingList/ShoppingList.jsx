@@ -2,7 +2,7 @@ import React from 'react';
 import ShoppingListItem from '../ShoppingListItem/ShoppingListItem';
 
 
-function ShoppingList({list, deleteItem}) {
+function ShoppingList({list, deleteItem, fetchList}) {
     return (
         <div id='shopping-list' className='shopping-list'>
             <button>RESET</button>
@@ -14,6 +14,7 @@ function ShoppingList({list, deleteItem}) {
                         key = {itemIndividual.id}
                         data = {itemIndividual}
                         deleteItem = {deleteItem}
+                        fetchList={fetchList}
                     />
                 ))}
             </div>
