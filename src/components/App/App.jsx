@@ -55,6 +55,20 @@ function App() {
           })
     }
 
+    const markPurchased = (id) => {
+        console.log('This is the id', id);
+
+        axios({
+            method: 'PUT',
+            url: `/list/${id}`
+        }).then(response => {
+            console.log('marked item purchased');
+        }).catch(error => {
+            console.log('PUT error', error);
+        })
+    }
+
+
     const deleteItem = (id) => {
         console.log('This is the id', id);
 
@@ -93,6 +107,7 @@ function App() {
                 fetchList={fetchList}
                 clearList={clearList}
                 putItem={putItem}
+                markPurchased={markPurchased}
             />
             </main>
         </div>

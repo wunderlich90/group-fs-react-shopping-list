@@ -1,7 +1,7 @@
 import React from 'react';
 import './shoppinglistitem.css';
 
-function ShoppingListItem({data, deleteItem, fetchList, markPurchased}) {
+function ItemPurchased({data, deleteItem, fetchList, markPurchased}) {
 
     const itemDeleted = () => {
         deleteItem(data.id)
@@ -20,10 +20,9 @@ function ShoppingListItem({data, deleteItem, fetchList, markPurchased}) {
             {data.quantity}
             {data.unit}
             {data.is_purchased}
-            <button onClick={markItPurchased}>BUY</button>
-            <button onClick={itemDeleted}>REMOVE</button>
+            <p>purchased</p>
         </div>
     );
 }
 
-export default ShoppingListItem;
+export default ItemPurchased;
